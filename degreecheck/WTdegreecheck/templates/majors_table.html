@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<tr>
-    {{ table.as_table }}
-</tr>
+<body>
+
+      {% load django_tables2 %}
+      {% render_table table %}
+   </body>
 
 {% endblock %}

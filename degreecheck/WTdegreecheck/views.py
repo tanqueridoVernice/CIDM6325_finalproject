@@ -4,7 +4,8 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 
 from .models import Major, Core
-from .forms import MajorForm
+from .forms import MajorForm, MajorTable
+import django_tables2 as tables
 
 def welcome_view (request):
     return render(request, 'base.html')
@@ -21,6 +22,7 @@ def form(request):
     form = MajorForm()
     return render(request, "form.html", {"method": request.method, "form": form})
 
-def majors_table(request):
-    table = MajorForm()
-    return render_to_response('majors_table.html', {"method": request.method,"table":table})
+class Majors_table(tables.SingleTableView):
+   table_class = MajorTable
+   queryset = Major.objects.all()
+   template_name = "majors_table.html"

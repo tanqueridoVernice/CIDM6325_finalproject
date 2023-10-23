@@ -23,5 +23,5 @@ urlpatterns = [
     path('', WTdegreecheck.views.welcome_view, name='base,'),
     path('majors/', WTdegreecheck.views.major_list, name='major_list,'),
     path('form/', WTdegreecheck.views.form, name='form,'),
-    #path('table/', WTdegreecheck.views.majors_table.as_view(), name='majors_table,'),
+    path('table/', WTdegreecheck.views.Majors_table.as_view(), name='table'),
 ]
