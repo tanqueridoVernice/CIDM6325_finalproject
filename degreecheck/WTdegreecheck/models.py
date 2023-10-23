@@ -7,11 +7,15 @@ class College(models.Model):
 
     def __str__(self):
         return self.name
+
+
 class Department(models.Model):
     name = models.CharField(max_length=100, help_text="Department name")
     college = models.ForeignKey(College, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.name
+
 
 class Semester(models.Model):
     sem = models.CharField(max_length=50,help_text="Spring,Fall,Summer I, Summer II")
