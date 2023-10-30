@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<h1>WTAMU DEGREE CHECKLIST</h1>
+
+<body>
+
+      {% load django_tables2 %}
+      {% render_table table %}
+   </body>
+{% endblock %}

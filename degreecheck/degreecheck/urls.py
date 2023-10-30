@@ -14,8 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
 import WTdegreecheck.views
+
+
+
 
 
 urlpatterns = [
@@ -24,4 +28,7 @@ urlpatterns = [
     path('majors/', WTdegreecheck.views.major_list, name='major_list,'),
     path('form/', WTdegreecheck.views.form, name='form,'),
     path('table/', WTdegreecheck.views.Majors_table.as_view(), name='table'),
+    path('mcform/', WTdegreecheck.views.mcform, name='mcform'),
+    path('data/', WTdegreecheck.views.mctable.as_view(), name='mcdata'),
+
 ]
