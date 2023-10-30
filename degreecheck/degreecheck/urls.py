@@ -30,5 +30,6 @@ urlpatterns = [
     path('table/', WTdegreecheck.views.Majors_table.as_view(), name='table'),
     path('mcform/', WTdegreecheck.views.mcform, name='mcform'),
     path('data/', WTdegreecheck.views.mctable.as_view(), name='mcdata'),
+    path('export/', WTdegreecheck.views.export),
 
 ]

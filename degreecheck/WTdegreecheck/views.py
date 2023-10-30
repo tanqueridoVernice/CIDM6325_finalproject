@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-
+import csv
+from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -40,3 +42,16 @@ class mctable(tables.SingleTableView):
     model = Major_course
     table_class = mctable
     template_name = 'mctable.html'
+
+def export(request):
+    response = HttpResponse(content_type='text/csv')
+
+    writer = csv.writer(response)
+    writer.writerow(['major', 'course', 'is_core', 'is_degree', 'is_major', 'semester', 'year'])
+
+    for x in Major_course.objects.all().values_list('major', 'course', 'is_core', 'is_degree', 'is_major', 'semester', 'year'):
+        writer.writerow(x)
+
+    response['Content-Disposition'] = 'attachment; filename="major-courses.csv"'
+
+    return response
