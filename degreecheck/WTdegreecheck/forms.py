@@ -1,6 +1,6 @@
 from django import forms
 from django.db import models
-from .models import Major, Major_course
+from .models import Major, Majorcourse
 import django_tables2 as tables
 class MajorForm(forms.ModelForm):
     class Meta:
@@ -9,7 +9,7 @@ class MajorForm(forms.ModelForm):
 
 class Majorcourseform(forms.ModelForm):
     class Meta:
-        model = Major_course
+        model = Majorcourse
         fields = ("__all__")
 
 class MajorTable(tables.Table):
@@ -18,4 +18,4 @@ class MajorTable(tables.Table):
 
 class mctable(tables.Table):
     class Meta:
-        model = Major_course
+        model = Majorcourse

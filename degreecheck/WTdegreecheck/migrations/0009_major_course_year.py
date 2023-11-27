@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='major_course',
+            model_name='majorcourse',
             name='year',
             field=models.IntegerField(default=0, help_text='program year'),
             preserve_default=False,

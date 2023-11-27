@@ -62,12 +62,12 @@ class Migration(migrations.Migration):
             name='Student',
         ),
         migrations.AddField(
-            model_name='major_course',
+            model_name='majorcourse',
             name='major',
             field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='WTdegreecheck.major'),
         ),
         migrations.AddField(
-            model_name='major_course',
+            model_name='majorcourse',
             name='semester',
             field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='WTdegreecheck.semester'),
         ),

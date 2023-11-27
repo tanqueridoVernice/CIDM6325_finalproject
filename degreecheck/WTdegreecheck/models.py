@@ -46,7 +46,7 @@ class Major(models.Model):
         return self.name
 
 
-class Major_course(models.Model):
+class Majorcourse(models.Model):
     major = models.ForeignKey(Major,on_delete=models.CASCADE, default=0)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, default=0)
     is_core = models.BooleanField()
@@ -54,5 +54,20 @@ class Major_course(models.Model):
     is_major = models.BooleanField()
     semester = models.ForeignKey(Semester,on_delete=models.CASCADE, default=0)
     year = models.IntegerField(help_text="program year")
+
+
+class Student(models.Model):
+    studentID = models.CharField(max_length=100, help_text="aa1234567")
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField
+    major = models.ForeignKey(Major,on_delete=models.CASCADE, default=0)
+
+class Studentgrade(models.Model):
+    studentID = models.ForeignKey(Student,on_delete=models.CASCADE, default=0)
+    major = models.ForeignKey(Majorcourse,on_delete=models.CASCADE, default=0)
+    status = models.BooleanField()
+    grade = models.IntegerField()
 
 

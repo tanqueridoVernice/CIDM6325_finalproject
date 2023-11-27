@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Search degrees by department</h1>
+<table>
+    <tr><th>Departments</th></tr>
+    {% for department in departments %}
+    <tr>
+        <td><a href="{% url 'dept_majors' department.id %}">{{department.name}}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

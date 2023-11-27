@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 # Register your models here.
 
-from WTdegreecheck.models import College, Department, Semester, Degree, Major, Course, Major_course
+from WTdegreecheck.models import *
 
 class CsvImportForm(forms.Form):
     csv_upload = forms.FileField()
@@ -32,7 +32,7 @@ class WTadmin(admin.ModelAdmin):
 
             for x in csv_data:
                 fields = x.split(",")
-                created = Major_course.objects.update_or_create(
+                created = Majorcourse.objects.update_or_create(
                     major_id = fields[0],
                     course_id = fields[1],
                     is_core= fields[2],
@@ -59,5 +59,6 @@ admin.site.register(Semester)
 admin.site.register(Degree)
 admin.site.register(Major)
 admin.site.register(Course)
-admin.site.register(Major_course, WTadmin)
+admin.site.register(Majorcourse, WTadmin)
+admin.site.register(Student)
 

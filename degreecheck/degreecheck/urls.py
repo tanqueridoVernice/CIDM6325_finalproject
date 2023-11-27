@@ -31,5 +31,7 @@ urlpatterns = [
     path('mcform/', WTdegreecheck.views.mcform, name='mcform'),
     path('data/', WTdegreecheck.views.mctable.as_view(), name='mcdata'),
     path('export/', WTdegreecheck.views.export),
-
+    path('departments/', WTdegreecheck.views.department),
+    path('departments/<str:pk_test>', WTdegreecheck.views.major, name = "dept_majors"),
+    path('majors/<str:pk_test>', WTdegreecheck.views.course, name = "major_courses"),
 ]

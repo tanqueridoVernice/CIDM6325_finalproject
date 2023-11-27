@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{departments.name}}</h1>
+<table>
+    <tr><th>Major</th></tr>
+    {% for major in majors %}
+    <tr>
+        <td><a href="{% url 'major_courses' major.id %}">{{major.name}}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
