@@ -54,20 +54,33 @@ class Majorcourse(models.Model):
     is_major = models.BooleanField()
     semester = models.ForeignKey(Semester,on_delete=models.CASCADE, default=0)
     year = models.IntegerField(help_text="program year")
-
+class Faculty(models.Model):
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, default = 0)
+    courses = models.ManyToManyField(Course)
 
 class Student(models.Model):
     studentID = models.CharField(max_length=100, help_text="aa1234567")
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
-    email = models.EmailField
+    email = models.EmailField(max_length=250, null=True)
     major = models.ForeignKey(Major,on_delete=models.CASCADE, default=0)
+    adviser = models.ForeignKey(Faculty,on_delete=models.CASCADE, default=0)
+    def __str__(self):
+        return self.studentID
+
 
 class Studentgrade(models.Model):
     studentID = models.ForeignKey(Student,on_delete=models.CASCADE, default=0)
-    major = models.ForeignKey(Majorcourse,on_delete=models.CASCADE, default=0)
+    course = models.ForeignKey(Majorcourse,on_delete=models.CASCADE, default=0)
     status = models.BooleanField()
     grade = models.IntegerField()
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, default=0)
+    yeartaken = models.IntegerField(help_text="program year")
+
 
 

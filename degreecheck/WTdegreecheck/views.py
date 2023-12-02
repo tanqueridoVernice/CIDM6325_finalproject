@@ -6,7 +6,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 from .models import *
-from .forms import MajorForm, MajorTable, Majorcourseform, mctable
+from .forms import *
 import django_tables2 as tables
 
 
@@ -36,13 +36,16 @@ def course(request, pk_test):
     courses = majors.majorcourse_set.all()
     context = {'majors':majors, 'courses':courses}
     return render(request,'courses.html', context)
-def form(request):
-    form = MajorForm()
-    return render(request, "form.html", {"method": request.method, "form": form})
+def studentform(request):
+    studentform = StudentForm()
+    return render(request, "studentform.html", {"method": request.method, "studentform": studentform})
 
 def mcform(request):
     mcform = Majorcourseform()
     return render(request, "mcform.html", {"method": request.method, "mcform": mcform})
+
+def studentpage(request):
+    return render(request,"student.html")
 
 class Majors_table(tables.SingleTableView):
    table_class = MajorTable
@@ -69,3 +72,16 @@ def export(request):
     response['Content-Disposition'] = 'attachment; filename="major-courses.csv"'
 
     return response
+def exportstudent(request):
+    response = HttpResponse(content_type='text/csv')
+
+    writer = csv.writer(response)
+    writer.writerow(['studentID', 'firstname', 'lastname', 'phone', 'email', 'major', 'adviser'])
+
+    for x in Student.objects.all().values_list('studentID', 'firstname', 'lastname', 'phone', 'email', 'major', 'adviser'):
+        writer.writerow(x)
+
+    response['Content-Disposition'] = 'attachment; filename="students.csv"'
+
+    return response
+

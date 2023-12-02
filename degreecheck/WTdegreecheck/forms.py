@@ -1,10 +1,10 @@
 from django import forms
 from django.db import models
-from .models import Major, Majorcourse
+from .models import *
 import django_tables2 as tables
-class MajorForm(forms.ModelForm):
+class StudentForm(forms.ModelForm):
     class Meta:
-        model = Major
+        model = Student
         fields = ("__all__")
 
 class Majorcourseform(forms.ModelForm):

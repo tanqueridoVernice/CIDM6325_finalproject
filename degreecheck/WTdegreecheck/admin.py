@@ -61,4 +61,5 @@ admin.site.register(Major)
 admin.site.register(Course)
 admin.site.register(Majorcourse, WTadmin)
 admin.site.register(Student)
-
+admin.site.register(Studentgrade)
+admin.site.register(Faculty)

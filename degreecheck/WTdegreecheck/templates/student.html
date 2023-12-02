@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>New or Returning Student</h1>
+<h2><a href="{%url 'studentform'%}">New Student</a></h2>
+<h2><a href="{%url 'studentform'%}">Returning Student</a></h2>
+{% endblock %}

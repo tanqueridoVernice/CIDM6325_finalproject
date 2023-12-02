@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "admin/change_list.html" %}
+{% load static %}
+{% block content %}
+
+<h1>Student List</h1>
+
+<a href="upload-csv/">Upload a csv file</a>
+<span></span>
+    <a href="{%url 'exportstudent'%}">Download Student List</a>
+{{ block.super}}
+
+{% endblock %}
