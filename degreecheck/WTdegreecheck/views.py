@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 import csv
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from io import BytesIO
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa
 # Create your views here.
 
 from .models import *
@@ -36,9 +39,20 @@ def course(request, pk_test):
     courses = majors.majorcourse_set.all()
     context = {'majors':majors, 'courses':courses}
     return render(request,'courses.html', context)
+
+def coursecheck(request,pk):
+    majors = Major.objects.get(id=pk)
+    courses = majors.majorcourse_set.all()
+    context = {'majors':majors, 'courses':courses}
+    return render(request,'coursecheck.html', context)
 def studentform(request):
-    studentform = StudentForm()
-    return render(request, "studentform.html", {"method": request.method, "studentform": studentform})
+    if request.POST:
+        studentform = StudentForm(request.POST)
+        if studentform.is_valid():
+            studentform.save()
+        return redirect(uploadstudentform)
+
+    return render(request, "studentform.html", {"method": request.method, "studentform": StudentForm})
 
 def mcform(request):
     mcform = Majorcourseform()
@@ -46,6 +60,12 @@ def mcform(request):
 
 def studentpage(request):
     return render(request,"student.html")
+
+def degreepage(request):
+    return render(request,"degreepage.html")
+
+def uploadstudentform(request):
+    return render(request,"uploadstudentform.html")
 
 class Majors_table(tables.SingleTableView):
    table_class = MajorTable
@@ -85,3 +105,16 @@ def exportstudent(request):
 
     return response
 
+def render_to_PDF(template_src, context_dict={}):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")),result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+class ViewPDF(View):
+    def get(self, request, *args, **kwargs):
+        pdf = render_to_PDF('majors_table.html')
+        return HttpResponse(pdf, content_type='application/pdf')

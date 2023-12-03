@@ -1,18 +1,23 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-<form method="post">
+<h2>Please fill up the form to create an account</h2>
+
+<p>
+    <form method="POST" action ="{%url 'studentform'%}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ studentform.as_p }}
-    <p>
-        <input type="submit" name="submit_input" value="Submit Input">
-    </p>
+
     <p>
         <button type="submit" name="button_element"           value="Button Element">
-            Button With <strong>Styled</strong> Text
+            <strong>Submit Form</strong>
         </button>
     </p>
 </form>
+</p>
+
+
 
 
 {% endblock %}

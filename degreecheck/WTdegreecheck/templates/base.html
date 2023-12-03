@@ -1,4 +1,6 @@
+
 <!doctype html>
+{%load static%}
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -20,26 +22,32 @@
         font-size: 25px;
       }
       h1 {text-align: center;
-      padding: 50px;}
+      padding-top: 50px;}
       h2 {text-align: center;
-      padding: 5px;}
-
+      padding-top:35px;}
+      table {margin-left: 5%;}
+      th, td {padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;}
+      form {margin-left: 10%;margin-top:50px;}
 
     </style>
   </head>
   <body>
+
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+
+        <img src= "{% static '/logos/SPIRIT-StackedLogo-WHITE.png' %}" style="width:35%; height: auto; margin-right:50px;margin-left:20px;">
           <a class="navbar-brand" href="/">Home</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+
               <li class="nav-item active">
-                <a class="nav-link" href="/departments">Departments<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'degreepage'%}">Departments<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="/studentpage">Students<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'studentpage'%}">Students<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/admin">Admin</a>
@@ -51,12 +59,15 @@
             </form>
           </div>
         </nav>
+
+
         {% block content %}
-        <h1 class="h1"><a href="/departments">WTAMU Degree Check List</a></h1>
-        <img src="http://127.0.0.1:8000/static/logos/SPIRIT-VerticalLogo-digital.png" style="width: 30%;
+
+        <img src="static/logos/SPIRIT-VerticalLogo-digital.png" style="width: 30%;
       height: auto; display: block;
   margin-left: auto;
-  margin-right: auto;">
+  margin-right: auto;margin-top: 6%;">
+        <h1 class="h1"><a href="{% url 'degreepage'%}">WTAMU Degree Check List</a></h1>
         {% endblock %}
   <!-- Copyright -->
   <footer class="page-footer font-small blue" style="padding: 25px;">

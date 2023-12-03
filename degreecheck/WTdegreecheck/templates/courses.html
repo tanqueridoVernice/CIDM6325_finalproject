@@ -2,12 +2,19 @@
 {% block content %}
 
 <h1>{{majors.name}}</h1>
+
+<p style="text-align:right; margin-right:15%"><a href="{% url 'coursecheck' majors.id %}">Go to {{majors.name}}
+        checklist</a></p>
+
 <table>
-    <tr><th>Course ID</th>
-    <th>Course Name</th>
-    <th>Hours</th></tr>
+    <tr>
+        <th>Course ID</th>
+        <th>Course Name</th>
+        <th>Hours</th>
+    </tr>
     {% for course in courses %}
     <tr>
+
         <td>{{course.course.c_ID}}</td>
         <td>{{course.course.c_name}}</td>
         <td>{{course.course.hours}}</td>

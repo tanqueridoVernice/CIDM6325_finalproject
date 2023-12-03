@@ -7,32 +7,36 @@
 <hr>
 
 <ul>
-{% for major in majors %}
-<li>
-    <span>Major Code: </span> <span> {{major.code}}</span>
-    <br>
-    <span>Degree: </span> <span> {{major.degree}}</span>
-    <br>
-    <span>Major: </span> <span> {{ major.name}}</span>
-    <br>
-    <span>College: </span><span> {{major.college}}</span>
-    <br>
-    <span>Department: </span><span> {{major.dept}}</span>
-    <br>
-    <span>Core requirements: </span>
-    <br>
-    <span> <ul> {% for cor in major.core.all %}
-        <li>{{cor}}</li>
-        {% endfor %} </ul>
-    </span>
-    <span>Major requirements: </span>
-    <br>
-    <span> <ul> {% for req in majors %}
-        <li>{{req.}}</li>
-        {% endfor %} </ul>
-    </span>
-</li>
-{% endfor %}
+    {% for major in majors %}
+    <li>
+        <span>Major Code: </span> <span> {{major.code}}</span>
+        <br>
+        <span>Degree: </span> <span> {{major.degree}}</span>
+        <br>
+        <span>Major: </span> <span> {{ major.name}}</span>
+        <br>
+        <span>College: </span><span> {{major.college}}</span>
+        <br>
+        <span>Department: </span><span> {{major.dept}}</span>
+        <br>
+        <span>Core requirements: </span>
+        <br>
+        <span>
+            <ul> {% for cor in major.core.all %}
+                <li>{{cor}}</li>
+                {% endfor %}
+            </ul>
+        </span>
+        <span>Major requirements: </span>
+        <br>
+        <span>
+            <ul> {% for req in majors %}
+                <li>{{req.}}</li>
+                {% endfor %}
+            </ul>
+        </span>
+    </li>
+    {% endfor %}
 
 </ul>
 {% endblock %}
