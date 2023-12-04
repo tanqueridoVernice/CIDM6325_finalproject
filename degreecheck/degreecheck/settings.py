@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'u)8dlr$+&cs!#ekd0088b^=9*ifen)46=(+yd9n9telk-lp6$r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -79,8 +80,12 @@ WSGI_APPLICATION = 'degreecheck.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER':'postgres',
+        'PASSWORD':'F6dafgb3A5eb4-4b6DebbdbbdG4AG*Fd',
+        'HOST':'monorail.proxy.rlwy.net',
+        'PORT':'47834',
     }
 }
 
@@ -123,3 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build', 'static')
+
+MEDIA_URL = "img/"
+MEDIA_ROOT = BASE_DIR/"media"

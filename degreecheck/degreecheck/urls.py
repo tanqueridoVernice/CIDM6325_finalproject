@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 import WTdegreecheck.views
 
@@ -42,3 +45,6 @@ urlpatterns = [
     path('studentlog/', WTdegreecheck.views.studentlog, name='studentlog'),
     path('studentgrades/<str:pk>', WTdegreecheck.views.studentgrades, name='studentgrades'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
