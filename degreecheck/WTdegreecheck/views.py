@@ -16,7 +16,7 @@ import django_tables2 as tables
 
 
 def welcome_view (request):
-    return render(request, 'base.html')
+    return render(request, 'index.html')
 
 def major_list(request):
     majors = Major.objects.all()
