@@ -2,6 +2,7 @@ Deployment Issues
     -Deployed django app to vercel with no errors however webpage isn't properly routing urls.
     -database is successfully migrated to postgresql through railway
     -Vercel home page showing directory
+    Url to site: https://cidm-6325-finalproject.vercel.app/degreecheck/WTdegreecheck/templates
 
 Static files
     -static files stopped working when editing settings.py for deployment
@@ -17,5 +18,8 @@ Please go to settings.py and remove the vercel app from the allowed hosts or dow
 fd90c248741299e21788563fadf75f5e9d0311b5
 #ALLOWED_HOSTS = ['.vercel.app']
 change to ->ALLOWED_HOSTS = []
+
+Django admin superuser: admin
+Django admin password: WT123
 
 I apologize for that. Thank you for this semester! :)
