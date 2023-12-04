@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        updateTotalHours();
+
+        $('input[type="checkbox"]').on('change', function () {
+            updateTotalHours();
+        });
+
+        function updateTotalHours() {
+            updateTotalHoursForTable('coreTable', 'coreTotalHours');
+            updateTotalHoursForTable('degreeTable', 'degreeTotalHours');
+            updateTotalHoursForTable('majorTable', 'majorTotalHours');
+        }
+
+        function updateTotalHoursForTable(tableId, totalHoursId) {
+            var totalHours = 0;
+
+            $('#' + tableId + ' input[type="checkbox"]:checked').each(function () {
+                totalHours += parseInt($(this).closest('tr').find('td:last').text());
+            });
+
+            $('#' + totalHoursId).text(totalHours);
+        }
+    });
+</script>
 
 <h1 id="tlt">{{majors.name}}</h1>
 
@@ -12,23 +38,71 @@
     <label for="studentid" style="margin-left:5%">Student ID:</label>
     <input type="text" id="studentid" name="studentid"><br>
     <br>
-    <table>
+    <p style="margin-left:5%"><strong>Core requirements</strong></p>
+    <table id="coreTable">
         <tr>
             <th>Status</th>
             <th>Course ID</th>
             <th>Course Name</th>
             <th>Hours</th>
         </tr>
-        {% for course in courses %}
+        {% for core in cores %}
         <tr>
             <td><input type="checkbox"></td>
-            <td>{{course.course.c_ID}}</td>
-            <td>{{course.course.c_name}}</td>
-            <td>{{course.course.hours}}</td>
+            <td>{{core.course.c_ID}}</td>
+            <td>{{core.course.c_name}}</td>
+            <td>{{core.course.hours}}</td>
 
         </tr>
         {% endfor %}
+        <tr>
+            <td colspan="3"><strong>Total Hours:</strong></td>
+            <td id="coreTotalHours"></td>
+    </table>
+    <br>
+    <p style="margin-left:5%"><strong>Degree requirements</strong></p>
+    <table id="degreeTable">
+        <tr>
+            <th>Status</th>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Hours</th>
+        </tr>
+        {% for degree in degrees %}
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>{{degree.course.c_ID}}</td>
+            <td>{{degree.course.c_name}}</td>
+            <td>{{degree.course.hours}}</td>
 
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3"><strong>Total Hours:</strong></td>
+            <td id="degreeTotalHours"></td>
+    </table>
+
+    <br>
+    <p style="margin-left:5%"><strong>Major requirements</strong></p>
+    <table id="majorTable">
+        <tr>
+            <th>Status</th>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Hours</th>
+        </tr>
+        {% for major in majorcourses %}
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>{{major.course.c_ID}}</td>
+            <td>{{major.course.c_name}}</td>
+            <td>{{major.course.hours}}</td>
+
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3"><strong>Total Hours:</strong></td>
+            <td id="majorTotalHours"></td>
     </table>
     <button id="button" style="margin-top:20px; margin-left:5%;" onclick="window.print();">Print
         Checklist</button>

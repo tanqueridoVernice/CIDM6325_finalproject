@@ -1,82 +1,109 @@
-
 <!doctype html>
 {%load static%}
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Degree Checklist</title>
-    <style type="text/css">
-      .navbar {
-        min-height: 100px;
-        font-size: 25px;
-      }
-      .navbar-brand {
-        font-size: 25px;
-      }
-      h1 {text-align: center;
-      padding-top: 50px;}
-      h2 {text-align: center;
-      padding-top:35px;}
-      table {margin-left: 5%;}
-      th, td {padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;}
-      form {margin-left: 10%;margin-top:50px;}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    </style>
-  </head>
-  <body>
+  <title>Degree Checklist</title>
+  <style type="text/css">
+    .navbar {
+      min-height: 100px;
+      font-size: 25px;
+    }
 
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    .navbar-brand {
+      font-size: 25px;
+    }
 
-        <img src= "{% static '/logos/SPIRIT-StackedLogo-WHITE.png' %}" style="width:35%; height: auto; margin-right:50px;margin-left:20px;">
-          <a class="navbar-brand" href="/">Home</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+    h1 {
+      text-align: center;
+      padding-top: 50px;
+    }
 
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'degreepage'%}">Departments<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'studentpage'%}">Students<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/admin">Admin</a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </div>
-        </nav>
+    h2 {
+      text-align: center;
+      padding-top: 35px;
+    }
+
+    table {
+      margin-left: 5%;
+    }
+
+    span {
+      margin-left: 5%;
+      padding: 10px;
+    }
+
+    th,
+    td {
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+
+    form {
+      margin-left: 10%;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+
+    <img src="{% static '/logos/SPIRIT-StackedLogo-WHITE.png' %}"
+      style="width:35%; height: auto; margin-right:50px;margin-left:20px;">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'degreepage'%}">Degrees<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'studentpage'%}">Students<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin">Admin</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
 
 
-        {% block content %}
+  {% block content %}
 
-        <img src="static/logos/SPIRIT-VerticalLogo-digital.png" style="width: 30%;
+  <img src="static/logos/SPIRIT-VerticalLogo-digital.png" style="width: 30%;
       height: auto; display: block;
   margin-left: auto;
   margin-right: auto;margin-top: 6%;">
-        <h1 class="h1"><a href="{% url 'degreepage'%}">WTAMU Degree Check List</a></h1>
-        {% endblock %}
+  <h1 class="h1"><a href="{% url 'degreepage'%}">WTAMU Degree Check List</a></h1>
+  {% endblock %}
   <!-- Copyright -->
   <footer class="page-footer font-small blue" style="padding: 25px;">
-    <div class="footer-copyright text-center py-3" >© 2023 Copyright
-    <!--  <a href="https://www.packtpub.com"> Packt Publications</a>
+    <div class="footer-copyright text-center py-3">© 2023 Copyright
+      <!--  <a href="https://www.packtpub.com"> Packt Publications</a>
       <p>Website by: Packt Publications</p>
       <p>Contact information: <a href="mailto:email@example.com">email@example.com</a></p>- -->
     </div>
   </footer>
   <!-- Copyright -->
-  </body>
+</body>
+
 </html>

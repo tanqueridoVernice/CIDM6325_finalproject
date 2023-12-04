@@ -6,6 +6,7 @@ from io import BytesIO
 from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
+from .filters import *
 # Create your views here.
 
 from .models import *
@@ -43,7 +44,10 @@ def course(request, pk_test):
 def coursecheck(request,pk):
     majors = Major.objects.get(id=pk)
     courses = majors.majorcourse_set.all()
-    context = {'majors':majors, 'courses':courses}
+    cores = majors.majorcourse_set.filter(is_core=True)
+    degrees = majors.majorcourse_set.filter(is_degree=True)
+    majorcourses = majors.majorcourse_set.filter(is_major=True)
+    context = {'majors':majors, 'courses':courses, 'cores':cores,'degrees':degrees,'majorcourses':majorcourses}
     return render(request,'coursecheck.html', context)
 def studentform(request):
     if request.POST:
@@ -54,6 +58,26 @@ def studentform(request):
 
     return render(request, "studentform.html", {"method": request.method, "studentform": StudentForm})
 
+def studentlog(request):
+    if request.method == 'POST':
+       pass
+        
+    else:
+        studentlog = Studentlog()
+    print(studentlog)
+    return render(request, "studentlogin.html", {"studentlog": studentlog})
+
+
+def studentgrades(request, pk):
+    try:
+        students = get_object_or_404(Student, studentID=pk)
+        grades = students.studentgrade_set.all()
+        context = {'students':students, 'grades':grades}
+        return render(request,'studentgrades.html', context)
+    except Student.DoesNotExist:
+        print("Student not found!")
+        return HttpResponse("Student not found")
+        
 def mcform(request):
     mcform = Majorcourseform()
     return render(request, "mcform.html", {"method": request.method, "mcform": mcform})
@@ -67,18 +91,20 @@ def degreepage(request):
 def uploadstudentform(request):
     return render(request,"uploadstudentform.html")
 
-class Majors_table(tables.SingleTableView):
-   table_class = MajorTable
-   queryset = Major.objects.all()
-   template_name = "majors_table.html"
+def Majors_table(request):
+    queryset = Major.objects.all()
+    MyFilter = MajorFilterSet(request.GET, queryset=queryset)
+    table = MajorTable(MyFilter.qs)
 
-#def mcdata(request):
-#    data = Majorcourse.objects.all()
- #   return render(request, 'mctable.html',{'data':data})
+    return render(request, 'majors_table.html', {'table': table, 'MyFilter': MyFilter})
+
 class mctable(tables.SingleTableView):
     model = Majorcourse
     table_class = mctable
     template_name = 'mctable.html'
+
+
+    
 
 def export(request):
     response = HttpResponse(content_type='text/csv')

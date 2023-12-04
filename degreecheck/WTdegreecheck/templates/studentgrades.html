@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Hello {{students.firstname}}!!!</h1>
+<h2>Contact Information</h2>
+
+<span><strong>Student ID:</strong> {{students.studentID}}</span><br>
+<span><strong>Name:</strong> {{students.firstname}} {{students.lastname}}</span><br>
+<span><strong>Phoone:</strong> {{students.phone}}</span><br>
+<span><strong>Email:</strong> {{students.email}}</span><br>
+<span><strong>Major:</strong>{{students.major}}</span><br>
+<span><strong>Adviser:</strong> {{students.adviser}}</span><br>
+
+<h2>Course History</h2>
+
+<table>
+    <tr>
+        <th>Course</th>
+        <th>Grade</th>
+        <th>Semester</th>
+        <th>Year</th>
+    </tr>
+    {% for grade in grades %}
+    <tr>
+        <td>{{grade.course}}</td>
+        <td>{{grade.grade}}</td>
+        <td>{{grade.semester}}</td>
+        <td>{{grade.yeartaken}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

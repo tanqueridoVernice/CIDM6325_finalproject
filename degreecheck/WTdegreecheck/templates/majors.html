@@ -3,10 +3,12 @@
 
 <h1>{{departments.name}}</h1>
 <table>
-    <tr><th>Major</th></tr>
+    <tr>
+        <th>Major</th>
+    </tr>
     {% for major in majors %}
     <tr>
-        <td><a href="{% url 'major_courses' major.id %}">{{major.name}}</a></td>
+        <td><a href="{% url 'course' major.id %}">{{major.name}}</a></td>
     </tr>
     {% endfor %}
 </table>

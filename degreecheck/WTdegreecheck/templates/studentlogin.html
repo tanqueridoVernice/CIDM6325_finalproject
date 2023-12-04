@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Please log-in to view student information</h2>
+
+
+<form method="GET" id="studentLogForm" action="{% url 'studentgrades' pk='PLACEHOLDER' %}">
+    {% csrf_token %}
+    {{ studentlog.as_p }}
+    <button type="submit" name="button_element" value="Button Element">
+        <strong>Submit</strong>
+    </button>
+
+</form>
+<script>
+    document.getElementById('studentLogForm').addEventListener('submit', function (event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Get the input values
+        var studentIDValue = document.getElementById('id_studentID').value;
+
+        // Update the form action with the retrieved value
+        var formAction = "{% url 'studentgrades' pk='PLACEHOLDER' %}".replace('PLACEHOLDER', studentIDValue);
+        document.getElementById('studentLogForm').action = formAction;
+
+        // Submit the form
+        this.submit();
+    });
+</script>
+{% endblock %}

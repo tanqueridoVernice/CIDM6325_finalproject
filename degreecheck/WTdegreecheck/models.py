@@ -29,7 +29,7 @@ class Course(models.Model):
     c_name = models.CharField(max_length= 150, help_text="e-commerce and web development")
     hours = models.IntegerField(default=3,help_text="number of credit hours")
     def __str__(self):
-        return self.c_name
+        return self.c_ID
 
 class Degree(models.Model):
     name = models.CharField(max_length=150, help_text="Degree Name")
@@ -67,24 +67,27 @@ class Faculty(models.Model):
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
 class Student(models.Model):
-    studentID = models.CharField(max_length=100, help_text="ex: aa1234567")
+    studentID = models.CharField(max_length=100, help_text="ex: aa1234567", primary_key=True)
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
     email = models.EmailField(max_length=250, null=True)
     major = models.ForeignKey(Major,on_delete=models.CASCADE, default=0)
     adviser = models.ForeignKey(Faculty,on_delete=models.CASCADE, default=0, null=True)
+    password = models.CharField(max_length=100)
     def __str__(self):
         return self.studentID
 
 
 class Studentgrade(models.Model):
     studentID = models.ForeignKey(Student,on_delete=models.CASCADE, default=0)
-    course = models.ForeignKey(Majorcourse,on_delete=models.CASCADE, default=0)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE, default=0)
     status = models.BooleanField()
     grade = models.IntegerField()
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, default=0)
     yeartaken = models.IntegerField(help_text="program year")
-
+    
+    def __str__(self):
+        return f'{self.studentID} - {self.course}'
 
 
