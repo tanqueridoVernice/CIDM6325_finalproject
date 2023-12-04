@@ -20,6 +20,7 @@ fd90c248741299e21788563fadf75f5e9d0311b5
 change to ->ALLOWED_HOSTS = []
 
 Django admin superuser: admin
+
 Django admin password: WT123
 
 I apologize for that. Thank you for this semester! :)
