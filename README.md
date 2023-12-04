@@ -5,7 +5,7 @@ Deployment Issues
     
     -Vercel home page showing directory
     
-    Url to site: https://cidm-6325-finalproject.vercel.app/degreecheck/WTdegreecheck/templates
+Url to site: https://cidm-6325-finalproject.vercel.app/degreecheck/WTdegreecheck/templates
 
 Static files
     
