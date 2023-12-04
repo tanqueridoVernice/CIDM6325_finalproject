@@ -1,5 +1,5 @@
 Deployment Issues
-    -Deployed django app to vercel with no errors however webpage properly routing urls.
+    -Deployed django app to vercel with no errors however webpage isn't properly routing urls.
     -database is successfully migrated to postgresql through railway
     -Vercel home page showing directory
 
