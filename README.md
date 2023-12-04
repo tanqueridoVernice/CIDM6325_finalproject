@@ -19,6 +19,8 @@ Commit/branch to the original django app without changes made to accomodate depl
 
 fd90c248741299e21788563fadf75f5e9d0311b5
 
+https://github.com/tanqueridoVernice/CIDM6325_finalproject/tree/fd90c248741299e21788563fadf75f5e9d0311b5
+
 The zip file submitted was the commit just after this one with the code with first attempt to deploy on vercel.
 
 Please go to settings.py and remove the vercel app from the allowed hosts or download the zip folder from branch for the original source code:
